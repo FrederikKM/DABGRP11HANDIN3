@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
+using DABHandIn3_2.Interfaces;
 using DABHandIn3_2.Models;
 
 namespace DABHandIn3_2.Controllers
@@ -17,21 +19,29 @@ namespace DABHandIn3_2.Controllers
 
     public class PersonController : ApiController
     {
-        private DABHandIn3_2Context db = new DABHandIn3_2Context();
-        private UnitOfWork uow = new UnitOfWork(db);
+        //private DABHandIn3_2Context db = new DABHandIn3_2Context();
+        private readonly IUnitOfWork _unitOfWork;
 
+        public PersonController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         // GET: api/Person
-        public IQueryable<Person> GetPeople()
+       //** Changed IQueryable to IEnumerable** -> public IQueryable<Person> GetPeople()
+        public IEnumerable<Person> GetPeople()
         {
-            return db.People;
+           // return db.People;
+            var model = _unitOfWork.PersonRepository.GetAll();
+            return model;
         }
 
         // GET: api/Person/5
         [ResponseType(typeof(Person))]
         public async Task<IHttpActionResult> GetPerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
+            //Person person = await db.People.FindAsync(id);
+            Person person = _unitOfWork.PersonRepository.GetById(id);
             if (person == null)
             {
                 return NotFound();
@@ -54,11 +64,13 @@ namespace DABHandIn3_2.Controllers
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            //db.Entry(person).State = EntityState.Modified;
+            _unitOfWork.PersonRepository.Add(person);
 
             try
             {
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,11 +96,13 @@ namespace DABHandIn3_2.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
+            //db.People.Add(person);
+            _unitOfWork.PersonRepository.Add(person);
 
             try
             {
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                _unitOfWork.Save();
             }
             catch (DbUpdateException)
             {
@@ -109,14 +123,18 @@ namespace DABHandIn3_2.Controllers
         [ResponseType(typeof(Person))]
         public async Task<IHttpActionResult> DeletePerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
+            //Person person = await db.People.FindAsync(id);
+            Person person = _unitOfWork.PersonRepository.GetById(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            db.People.Remove(person);
-            await db.SaveChangesAsync();
+            //db.People.Remove(person);
+            //await db.SaveChangesAsync();
+
+            _unitOfWork.PersonRepository.Delete(person);
+            _unitOfWork.Save();
 
             return Ok(person);
         }
@@ -125,14 +143,16 @@ namespace DABHandIn3_2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                _unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
-
+        /*
         private bool PersonExists(int id)
         {
             return db.People.Count(e => e.Id == id) > 0;
         }
+        */
     }
 }

@@ -16,6 +16,8 @@ namespace DABHandIn3_2.Controllers
     public class AlternativeAddressesController : ApiController
     {
         private DABHandIn3_2Context db = new DABHandIn3_2Context();
+        private UnitOfWork uow = new UnitOfWork(db);
+
 
         // GET: api/AlternativeAddresses
         public IQueryable<AlternativeAddress> GetAlternativeAddresses()
