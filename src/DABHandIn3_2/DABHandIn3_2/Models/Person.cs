@@ -17,7 +17,7 @@ namespace DABHandIn3_2.Models
 
         public string Email { get; set; }
 
-        [Required]
+       // [Required]
         public virtual PrimaryAddress PrimaryAddress { get; set; }
 
         public virtual List<PhoneNumber> PhoneNumbers { get; set; } = new List<PhoneNumber>();
