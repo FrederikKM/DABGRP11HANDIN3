@@ -9,27 +9,37 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DABHandIn3_2.Interfaces;
 using DABHandIn3_2.Models;
 
 namespace DABHandIn3_2.Controllers
 {
     public class AlternativeAddressesController : ApiController
     {
-        private DABHandIn3_2Context db = new DABHandIn3_2Context();
-        private UnitOfWork uow = new UnitOfWork(db);
+        private readonly DABHandIn3_2Context db = new DABHandIn3_2Context();
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AlternativeAddressesController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
 
         // GET: api/AlternativeAddresses
-        public IQueryable<AlternativeAddress> GetAlternativeAddresses()
+        //** Changed IQueryable to IEnumerable** -> public IQueryable<AlternativeAddress> GetAlternativeAddresses()
+        public IEnumerable<AlternativeAddress> GetAlternativeAddresses()
         {
-            return db.AlternativeAddresses;
+            //return db.AlternativeAddresses;
+            var model = _unitOfWork.AltAddressRepository.GetAll();
+            return model;
         }
 
         // GET: api/AlternativeAddresses/5
         [ResponseType(typeof(AlternativeAddress))]
         public async Task<IHttpActionResult> GetAlternativeAddress(int id)
         {
-            AlternativeAddress alternativeAddress = await db.AlternativeAddresses.FindAsync(id);
+            //AlternativeAddress alternativeAddress = await db.AlternativeAddresses.FindAsync(id);
+            AlternativeAddress alternativeAddress = _unitOfWork.AltAddressRepository.GetById(id);
             if (alternativeAddress == null)
             {
                 return NotFound();
@@ -52,11 +62,13 @@ namespace DABHandIn3_2.Controllers
                 return BadRequest();
             }
 
-            db.Entry(alternativeAddress).State = EntityState.Modified;
+            //db.Entry(alternativeAddress).State = EntityState.Modified;
+            _unitOfWork.AltAddressRepository.Add(alternativeAddress);
 
             try
             {
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -82,8 +94,11 @@ namespace DABHandIn3_2.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.AlternativeAddresses.Add(alternativeAddress);
-            await db.SaveChangesAsync();
+            //db.AlternativeAddresses.Add(alternativeAddress);
+            //await db.SaveChangesAsync();
+
+            _unitOfWork.AltAddressRepository.Add(alternativeAddress);
+            _unitOfWork.Save();
 
             return CreatedAtRoute("DefaultApi", new { id = alternativeAddress.Id }, alternativeAddress);
         }
@@ -92,14 +107,18 @@ namespace DABHandIn3_2.Controllers
         [ResponseType(typeof(AlternativeAddress))]
         public async Task<IHttpActionResult> DeleteAlternativeAddress(int id)
         {
-            AlternativeAddress alternativeAddress = await db.AlternativeAddresses.FindAsync(id);
+           // AlternativeAddress alternativeAddress = await db.AlternativeAddresses.FindAsync(id);
+            AlternativeAddress alternativeAddress = _unitOfWork.AltAddressRepository.GetById(id);
             if (alternativeAddress == null)
             {
                 return NotFound();
             }
 
-            db.AlternativeAddresses.Remove(alternativeAddress);
-            await db.SaveChangesAsync();
+            //db.AlternativeAddresses.Remove(alternativeAddress);
+            //await db.SaveChangesAsync();
+
+            _unitOfWork.AltAddressRepository.Delete(alternativeAddress);
+            _unitOfWork.Save();
 
             return Ok(alternativeAddress);
         }
@@ -108,7 +127,8 @@ namespace DABHandIn3_2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                _unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

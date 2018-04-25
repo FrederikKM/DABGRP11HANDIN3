@@ -19,7 +19,7 @@ namespace DABHandIn3_2.Controllers
 
     public class PersonController : ApiController
     {
-        //private DABHandIn3_2Context db = new DABHandIn3_2Context();
+        private readonly DABHandIn3_2Context db = new DABHandIn3_2Context();
         private readonly IUnitOfWork _unitOfWork;
 
         public PersonController(IUnitOfWork unitOfWork)
@@ -148,11 +148,11 @@ namespace DABHandIn3_2.Controllers
             }
             base.Dispose(disposing);
         }
-        /*
+        
         private bool PersonExists(int id)
         {
             return db.People.Count(e => e.Id == id) > 0;
         }
-        */
+        
     }
 }
