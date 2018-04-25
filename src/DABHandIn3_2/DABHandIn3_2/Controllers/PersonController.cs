@@ -22,6 +22,11 @@ namespace DABHandIn3_2.Controllers
         private readonly DABHandIn3_2Context db = new DABHandIn3_2Context();
         private readonly IUnitOfWork _unitOfWork;
 
+        public PersonController()
+        {
+            
+        }
+
         public PersonController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
