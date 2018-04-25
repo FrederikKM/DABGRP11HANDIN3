@@ -11,22 +11,43 @@ namespace DABHandIn3_2
 {
     public class UnitOfWork : IDisposable
     {
+
         public DABHandIn3_2Context Context { get; set; }
+        private IRepository<Person> _personRepository { get; set; }
+        private IRepository<PhoneNumber> _phoneRepository { get; set; }
 
-        public Repository<Person> PersonRepository { get; set; }
-        public Repository<PhoneNumber> PhoneRepository { get; set; }
+        private IRepository<AlternativeAddress> _altAddressRepository { get; set; }
 
-        public Repository<AlternativeAddress> AltAddressesRepository { get; set; }
-
-        public Repository<PrimaryAddress> PrimaryAddressRepository { get; set; }
+        private IRepository<PrimaryAddress> _primaryAddressRepository { get; set; }
 
         public UnitOfWork(DABHandIn3_2Context context)
         {
             Context = context;
-            PersonRepository = new Repository<Person>(Context);
-            PhoneRepository = new Repository<PhoneNumber>(Context);
-            AltAddressesRepository = new Repository<AlternativeAddress>(Context);
-            PrimaryAddressRepository = new Repository<PrimaryAddress>(Context);
+            
+        }
+
+        public IRepository<Person> PersonRepository
+        {
+            get => _personRepository = _personRepository ?? new Repository<Person>(Context);
+            set => _personRepository = value;
+        }
+
+        public IRepository<PhoneNumber> PhoneRepository
+        {
+            get => _phoneRepository = _phoneRepository ?? new Repository<PhoneNumber>(Context);
+            set => _phoneRepository = value;
+        }
+
+        public IRepository<AlternativeAddress> AltAddressRepostiory
+        {
+            get => _altAddressRepository = _altAddressRepository ?? new Repository<AlternativeAddress>(Context);
+            set => _altAddressRepository = value;
+        }
+
+        public IRepository<PrimaryAddress> PrimaryAddressesRepostiory
+        {
+            get => _primaryAddressRepository = _primaryAddressRepository ?? new Repository<PrimaryAddress>(Context);
+            set => _primaryAddressRepository = value;
         }
 
         public async Task SaveAsync()
