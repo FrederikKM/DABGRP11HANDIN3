@@ -191,6 +191,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804250934192_Initial.cs" />
+    <Compile Include="Migrations\201804250934192_Initial.Designer.cs">
+      <DependentUpon>201804250934192_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250937345_Initial1.cs" />
+    <Compile Include="Migrations\201804250937345_Initial1.Designer.cs">
+      <DependentUpon>201804250937345_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250939459_People.cs" />
+    <Compile Include="Migrations\201804250939459_People.Designer.cs">
+      <DependentUpon>201804250939459_People.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AlternativeAddress.cs" />
     <Compile Include="Models\DABHandIn3_2Context.cs" />
@@ -266,6 +278,17 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804250934192_Initial.resx">
+      <DependentUpon>201804250934192_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250937345_Initial1.resx">
+      <DependentUpon>201804250937345_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250939459_People.resx">
+      <DependentUpon>201804250939459_People.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,7 +14,7 @@ namespace DABHandIn3_2.Models
         public string ZipCode { get; set; }
 
         //Foreign key
-        public int PersonId { get; set; }
+        public int PeopleId { get; set; }
         //Navigation property
         public Person Person { get; set; }
     }
