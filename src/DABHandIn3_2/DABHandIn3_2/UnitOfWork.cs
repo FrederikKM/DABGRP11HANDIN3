@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using DABHandIn3_2.Models;
+using DABHandIn3_2.Interfaces;
 
 namespace DABHandIn3_2
 {
@@ -12,20 +13,20 @@ namespace DABHandIn3_2
     {
         public DABHandIn3_2Context Context { get; set; }
 
-        public Repository.IGenericRepository<Person> PersonRepository { get; set; }
-        public Repository.IGenericRepository<PhoneNumber> PhoneRepository { get; set; }
+        public Repository<Person> PersonRepository { get; set; }
+        public Repository<PhoneNumber> PhoneRepository { get; set; }
 
-        public Repository.IGenericRepository<AlternativeAddress> AltAddressesRepository { get; set; }
+        public Repository<AlternativeAddress> AltAddressesRepository { get; set; }
 
-        public Repository.IGenericRepository<PrimaryAddress> PrimaryAddressRepository { get; set; }
+        public Repository<PrimaryAddress> PrimaryAddressRepository { get; set; }
 
         public UnitOfWork(DABHandIn3_2Context context)
         {
             Context = context;
-            PersonRepository = new Repository.GenericRepository<Person>(Context);
-            PhoneRepository = new Repository.GenericRepository<PhoneNumber>(Context);
-            AltAddressesRepository = new Repository.GenericRepository<AlternativeAddress>(Context);
-            PrimaryAddressRepository = new Repository.GenericRepository<PrimaryAddress>(Context);
+            PersonRepository = new Repository<Person>(Context);
+            PhoneRepository = new Repository<PhoneNumber>(Context);
+            AltAddressesRepository = new Repository<AlternativeAddress>(Context);
+            PrimaryAddressRepository = new Repository<PrimaryAddress>(Context);
         }
 
         public async Task SaveAsync()

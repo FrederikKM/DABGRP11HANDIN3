@@ -13,9 +13,13 @@ using DABHandIn3_2.Models;
 
 namespace DABHandIn3_2.Controllers
 {
+    
+
     public class PersonController : ApiController
     {
         private DABHandIn3_2Context db = new DABHandIn3_2Context();
+        private UnitOfWork uow = new UnitOfWork(db);
+
 
         // GET: api/Person
         public IQueryable<Person> GetPeople()
