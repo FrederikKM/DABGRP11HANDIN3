@@ -8,6 +8,8 @@ namespace DABHandIn3_2.Models
 {
     public class PhoneCompany
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string CompanyName { get; set; }
 
