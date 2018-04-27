@@ -34,12 +34,12 @@ namespace DABHandIn3_2.Controllers
 
         // GET: api/Person
        //** Changed IQueryable to IEnumerable** -> public IQueryable<Person> GetPeople()
-        public IEnumerable<PersonDTO> GetPeople()
+        public IEnumerable<Person> GetPeople()
         {
            // return db.People;
             var model = _unitOfWork.PersonRepository.GetAll();
 
-            return model(new PersonDTO(model));
+            return model;
 
         }
 

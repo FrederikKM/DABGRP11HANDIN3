@@ -15,9 +15,8 @@ namespace DABHandIn3_2.Models
 
         public string PhoneCompany { get; set; }
 
-        //Foreign key
-        public int PeopleId { get; set; }
-        //Navigation property
-        public Person Person { get; set; }
+        public virtual Person Person { get; set; }
+
+
     }
 }

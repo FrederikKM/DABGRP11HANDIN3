@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DABHandIn3_2.Models
 {
-    public class PrimaryAddress
+    public class AlternativeAddress
     {
         [Key]
         public int Id { get; set; }

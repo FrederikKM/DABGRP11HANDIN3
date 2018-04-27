@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4077ACF5-4E9E-4BB2-B5DB-28C5F1C36D23}</ProjectGuid>
+    <ProjectGuid>{1B3AB1BE-D4FF-48DC-AFA8-9DD945EF0010}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -183,20 +183,42 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AlternativeAddressesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\PhoneNumbersController.cs" />
+    <Compile Include="Controllers\PrimaryAddressesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\AddressName.cs" />
-    <Compile Include="Models\AddressType.cs" />
-    <Compile Include="Models\City.cs" />
+    <Compile Include="Migrations\201804250934192_Initial.cs" />
+    <Compile Include="Migrations\201804250934192_Initial.Designer.cs">
+      <DependentUpon>201804250934192_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250937345_Initial1.cs" />
+    <Compile Include="Migrations\201804250937345_Initial1.Designer.cs">
+      <DependentUpon>201804250937345_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804250939459_People.cs" />
+    <Compile Include="Migrations\201804250939459_People.Designer.cs">
+      <DependentUpon>201804250939459_People.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804251455525_Rep.cs" />
+    <Compile Include="Migrations\201804251455525_Rep.Designer.cs">
+      <DependentUpon>201804251455525_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261129299_Address.cs" />
+    <Compile Include="Migrations\201804261129299_Address.Designer.cs">
+      <DependentUpon>201804261129299_Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AlternativeAddress.cs" />
+    <Compile Include="Models\DABHandIn3_2Context.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\PersonAddress.cs" />
-    <Compile Include="Models\PersonAddressType.cs" />
-    <Compile Include="Models\PhoneCompany.cs" />
+    <Compile Include="Models\PersonDetailDTO.cs" />
+    <Compile Include="Models\PersonDTO.cs" />
     <Compile Include="Models\PhoneNumber.cs" />
     <Compile Include="Models\PrimaryAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +293,23 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804250934192_Initial.resx">
+      <DependentUpon>201804250934192_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250937345_Initial1.resx">
+      <DependentUpon>201804250937345_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804250939459_People.resx">
+      <DependentUpon>201804250939459_People.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251455525_Rep.resx">
+      <DependentUpon>201804251455525_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261129299_Address.resx">
+      <DependentUpon>201804261129299_Address.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -287,9 +326,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63415</DevelopmentServerPort>
+          <DevelopmentServerPort>58093</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63415/</IISUrl>
+          <IISUrl>http://localhost:58093/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

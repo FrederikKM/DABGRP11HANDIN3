@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace DABHandIn3_2.Models
 {
     public class Person
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
