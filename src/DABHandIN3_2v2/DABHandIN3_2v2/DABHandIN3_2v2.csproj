@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -177,12 +183,41 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AlternativeAddressesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\PhoneNumbersController.cs" />
+    <Compile Include="Controllers\PrimaryAddressesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Intefaces\IRepository.cs" />
+    <Compile Include="Intefaces\IUnitOfWork.cs" />
+    <Compile Include="Migrations\201804270911533_Initial.cs" />
+    <Compile Include="Migrations\201804270911533_Initial.Designer.cs">
+      <DependentUpon>201804270911533_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270958568_rep.cs" />
+    <Compile Include="Migrations\201804270958568_rep.Designer.cs">
+      <DependentUpon>201804270958568_rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804271005385_person.cs" />
+    <Compile Include="Migrations\201804271005385_person.Designer.cs">
+      <DependentUpon>201804271005385_person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804271025554_PeopleID.cs" />
+    <Compile Include="Migrations\201804271025554_PeopleID.Designer.cs">
+      <DependentUpon>201804271025554_PeopleID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AlternativeAddress.cs" />
+    <Compile Include="Models\DABHandIN3_2v2Context.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PhoneNumber.cs" />
+    <Compile Include="Models\PrimaryAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -238,7 +273,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -252,6 +286,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804270911533_Initial.resx">
+      <DependentUpon>201804270911533_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270958568_rep.resx">
+      <DependentUpon>201804270958568_rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804271005385_person.resx">
+      <DependentUpon>201804271005385_person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804271025554_PeopleID.resx">
+      <DependentUpon>201804271025554_PeopleID.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,13 +8,14 @@ namespace DABHandIN3_2v2.Models
 {
     public class PhoneNumber
     {
-        [Key]
+        
         public int Id { get; set; }
         public string Number { get; set; }
         public string Usage { get; set; }
 
         public string PhoneCompany { get; set; }
 
-        public virtual Person Person { get; set; }
+        public int PeopleId { get; set; }
+        public Person Person { get; set; }
     }
 }
