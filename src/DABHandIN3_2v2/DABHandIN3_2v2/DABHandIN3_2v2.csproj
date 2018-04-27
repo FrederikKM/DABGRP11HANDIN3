@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201804271025554_PeopleID.Designer.cs">
       <DependentUpon>201804271025554_PeopleID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804271059110_People.cs" />
+    <Compile Include="Migrations\201804271059110_People.Designer.cs">
+      <DependentUpon>201804271059110_People.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AlternativeAddress.cs" />
     <Compile Include="Models\DABHandIN3_2v2Context.cs" />
@@ -299,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804271025554_PeopleID.resx">
       <DependentUpon>201804271025554_PeopleID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804271059110_People.resx">
+      <DependentUpon>201804271059110_People.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

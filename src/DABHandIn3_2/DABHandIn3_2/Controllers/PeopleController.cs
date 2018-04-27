@@ -40,7 +40,7 @@ namespace DABHandIn3_2.Controllers
             var model = _unitOfWork.PersonRepository.GetAll();
 
             return model;
-
+            
         }
 
         // GET: api/Person/5

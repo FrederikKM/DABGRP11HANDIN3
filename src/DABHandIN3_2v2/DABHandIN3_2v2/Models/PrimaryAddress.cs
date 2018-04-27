@@ -15,7 +15,7 @@ namespace DABHandIN3_2v2.Models
         public string HouseNumber { get; set; }
         public string ZipCode { get; set; }
 
-        public int PeopleId { get; set; }
+       
         public Person Person { get; set; }
     }
 }

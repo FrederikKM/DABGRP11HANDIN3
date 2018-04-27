@@ -17,12 +17,11 @@ namespace DABHandIN3_2v2.Models
         public string Relation { get; set; }
 
         public string Email { get; set; }
-        /*
-        [Required]
-        public virtual PrimaryAddress PrimaryAddress { get; set; }
+       
+        //public PrimaryAddress PrimaryAddress { get; set; }
 
         public virtual List<PhoneNumber> PhoneNumbers { get; set; } = new List<PhoneNumber>();
-        public virtual List<AlternativeAddress> AlternativeAddresses { get; set; } = new List<AlternativeAddress>(); */
+        public virtual List<AlternativeAddress> AlternativeAddresses { get; set; } = new List<AlternativeAddress>(); 
     }
  }
     
